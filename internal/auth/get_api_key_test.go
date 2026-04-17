@@ -1,10 +1,9 @@
 package auth
 
 import (
-	"testing"
 	"net/http"
+	"testing"
 )
-
 
 func TestGetAPIKey(t *testing.T) {
 	req, _ := http.NewRequest("GET", "/", nil)
