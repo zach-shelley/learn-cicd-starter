@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
@@ -91,12 +92,9 @@ func main() {
 	srv := &http.Server{
 		Addr:              ":" + port,
 		Handler:           router,
-		ReadHeaderTimeout: 30,
+		ReadHeaderTimeout: 30 * time.Second,
 	}
 
-	log.Print("Serving server")
-	err = srv.ListenAndServe()
-	if err != nil {
-		log.Fatalf("Error serving server: %s", err)
-	}
+	log.Printf("Serving server on port: %s", port)
+	log.Fatal(srv.ListenAndServe())
 }
